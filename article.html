@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title id="pageTitle">request - butterdogco</title>
+  <link rel="apple-touch-icon" sizes="256x256" href="img/butterdog.jpg">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="shortcut icon" href="img/butterdog.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+  <link rel="stylesheet" href="css/article.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="a butterdogco feature request">
+</head>
+
+<body>
+  <img src="img/butterdog.jpg" class="logo" onclick="site('index.html')">
+  <img src="img/back.png" class="logo2" onclick="site('index.html')">
+  <h1 class="logoText">butterdogco</h1>
+  <br>
+  <div class="article">
+    <div class="articleImage">
+      <img src="img/butterdog.jpg" id="articleImg">
+    </div>
+    <h1 class="articleTitle" id="articleTitle">loading</h1>
+    <pre class="articleText" id="articleText">if you see this text your internet is a hot pile of garbage</pre>
+    <p class="articleWriter" id="articleStatus">request status loading</p>
+    <p class="articleWriter" id="articleDate">created 09/49/1948</p>
+  </div>
+  <hr>
+  <div class="loading" id="loadDiv">
+    <img src="img/butterdog.jpg" class="loading-icon">
+    <div class="loading-spinner"></div>
+  </div>
+
+  <footer>
+    <a class="not-a-button">copyirigt butterdogco 2024</a>
+    <a href="https://forms.gle/wRjANHLeSoAidRvc6">request</a>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script src="js/articlesDir.js"></script>
+  <script src="js/article.js"></script>
+  <script src="js/theme.js"></script>
+  <script src="js/autocomplete.js"></script>
+  <script>
+    var url = new URL(window.location);
+    var articleNum = url.searchParams.get("article");
+    var responseCount = 0;
+    
+    function responseCountFunc() {
+      const spreadsheetId = "1LlL8mrSXTTV6qHOkUKd57oVb0uZATq037Wg4ltlDreg";
+      const sheetName = "Form Responses 4";
+      const sheetId = "AIzaSyBie4PasgrxYkF7LRl8zcCGUsnBnwZ8pWE";
+      const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${sheetId}`;
+
+      fetch(url)
+        .then(response => response.json())
+        .then(data => {
+          responseCount = data.values.length - 1; // Subtract 1 to exclude header row
+          if (articleNum === "latest") {
+            articleNum = responseCount;
+          }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+
+    responseCountFunc();
+    
+    function processTags(text) {
+      var first = text.replaceAll("<", "&lt");
+      var second = first.replaceAll(">", "&gt");
+      return second;
+    }
+    
+    function processURLs(text) {
+      var regex = /\((.*?)\)\[(.*?)\]/g;;
+      var final = text.replace(regex, function(match, linkText, url) {
+        var link = url.trim();
+        var articleRegex = /Article\/\d+$/;
+        if (link.toString().match(articleRegex)) {
+          var id = link.split("/")[1];
+          link = `article.html?article=${id}`;
+        }
+        return `<a href="${link}" title="${url.trim()}">${linkText.trim()}</a>`;
+      });
+      return final;
+    }
+    
+    function processText(text) {
+      var first = processTags(text);
+      var second = processURLs(first);
+      return second;
+    }
+    
+    function sheetData(c1, id, mode) {
+      const spreadsheetId = '1LlL8mrSXTTV6qHOkUKd57oVb0uZATq037Wg4ltlDreg';
+      const range = 'Form Responses 4!' + c1;
+
+      fetch(`https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${range}?key=AIzaSyBie4PasgrxYkF7LRl8zcCGUsnBnwZ8pWE`)
+        .then(response => response.json())
+        .then(data => {
+          let val = data.values;
+          if (mode === "image") {
+            try {
+              const linkPattern = /^https:\/\/drive\.google\.com\/open\?id=.*/;
+              const valStr = val.toString();
+
+              if (linkPattern.test(valStr)) {
+                const imageId = valStr.replace('https://drive.google.com/open?id=', '');
+                const newImageUrl = `https://drive.google.com/thumbnail?id=${imageId}`;
+                document.getElementById(id).src = newImageUrl;
+              } else {
+                // If it's not a specific Google Drive link, assign val as the image source
+                document.getElementById(id).src = valStr;
+              }
+            } catch (err) {
+              console.error(err);
+            }
+          } else if (mode === "title") {
+            if (val === undefined) {
+              document.getElementById(id).innerHTML = "tis article no exist i tink";
+            } else {
+              document.getElementById(id).innerHTML = val;
+            }
+          } else if (mode === "text") {
+            if (val === undefined) {
+              document.getElementById(id).innerText = "i forgor the text";
+            } else {
+              document.getElementById(id).innerHTML = processText(`${val}`);
+            }
+          } else if (mode === "status") {
+            if (val === undefined) {
+              document.getElementById(id).innerHTML = ''.concat(`status: ${val}`);
+            } else {
+              document.getElementById(id).innerHTML = ''.concat(`status: not yet reviewed`);
+            }
+          } else if (mode === "pageTitle") {
+            if (val === undefined) {
+              document.title = "nothing - request";
+            } else {
+              document.title = val + " - request";
+            }
+          } else if (mode === "dateMade") {
+            if (val === undefined) {
+              document.getElementById(id).innerHTML = 'created tomorrow';
+            } else {
+              document.getElementById(id).innerHTML = 'created ' + val;
+            }
+          } else if (mode === "approved") {
+            if (val.toString() === 'no') {
+              window.location.href = "index.html";
+              alert("this request is no longer available");
+            }
+          }
+
+          return val;
+        });
+    }
+
+    sheetData("F" + articleNum, "", "approved");
+    sheetData("C" + articleNum, "articleTitle", "title");
+    sheetData("D" + articleNum, "articleText", "text");
+    // sheetData("F" + articleNum, "articleImg", "image");
+    sheetData("C" + articleNum, "articleStatus", "status");
+    sheetData("G" + articleNum, "", "pageTitle");
+    sheetData("A" + articleNum, "articleDate", "dateMade");
+
+    function checkLoad() {
+      if (document.getElementById('articleTitle').innerHTML != "loading" == false) {
+        window.setTimeout(checkLoad, 100);
+      } else {
+        document.getElementById('loadDiv').style.opacity = 0;
+        window.setTimeout(function () {
+          document.getElementById('loadDiv').remove();
+        }, 200);
+      }
+    }
+    checkLoad();
+  </script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

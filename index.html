@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>home - butterdogco updates</title>
+    <link rel="shortcut icon" href="img/butterdog.ico">
+    <link rel="apple-touch-icon" sizes="256x256" href="img/butterdog.jpg">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <link rel="stylesheet" href="css/home.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="track feature suggestions">
+  </head>
+  <body>
+    <div class="headImageGradient" id="headImageGradient">
+      <div class="headImage" id="headImage"></div>
+    </div>
+    <img src="img/butterdog.jpg" class="logo" onclick="load('hey','don clik dat','img/butterdog.jpg','#','items')" id="logo">
+    <img src="img/back.png" class="logo2" onclick="site('#')">
+    <div class="search">
+      <img src="img/search.png" onclick="search()">
+      <input type="text" placeholder="saerch for somting" id="searchBox" onkeydown="search2(this)">
+    </div>
+    <br>
+    <hr>
+    <h2 class="all" onclick="load('no don click me','why did you click that','img/butterdog.jpg','#','items');">lates request</h2>
+    <div class="items" id="items">
+
+      <!--
+      <div class="item" id="item" onclick="site('https://google.com')">
+        <img src="https://github.com/butterdogco/Wikabedia/blob/main/img/wikabedia.png?raw=true">
+        <h3>Name</h3>
+        <p>Short description</p>
+      </div>
+      -->
+      
+    </div>
+    
+    <div class="loading" id="loadDiv">
+      <img src="img/butterdog.ico" class="loading-icon">
+      <div class="loading-spinner"></div>
+    </div>
+    
+    <hr>
+    <footer>
+      <a class="not-a-button">copyirigt butterdogco 2024</a>
+      <a href="https://forms.gle/wRjANHLeSoAidRvc6">request</a>
+    </footer>
+
+    <script src="js/main.js"></script>
+    <script src="js/articlesDir.js"></script>
+    <script src="js/home.js"></script>
+    <script src="js/recomend.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/backgroundImage.js"></script>
+    <script src="js/autocomplete.js"></script>
+    <script>
+      function createDefaults() {
+        if (done === false) {
+          setTimeout(createDefaults,100);
+        } else {
+          // runs when loaded
+        }
+      }
+      
+      function checkLoad() {
+        if(done === true) {
+          document.getElementById('loadDiv').style.opacity = 0;
+          document.getElementById('loadDiv').remove();
+          const parent = document.getElementById("items");
+          const arr = Array.from(parent.childNodes);
+          arr.reverse();
+          parent.append(...arr);
+        } else {
+          setTimeout(checkLoad,150);
+        }
+      }
+      
+      // setTimeout(createDefaults, 100);
+      setTimeout(checkLoad, 150);
+    </script>
+  </body>
+</html>
