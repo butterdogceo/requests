@@ -53,7 +53,6 @@
     <script src="js/main.js"></script>
     <script src="js/articlesDir.js"></script>
     <script src="js/home.js"></script>
-    <script src="js/recomend.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/backgroundImage.js"></script>
     <script src="js/autocomplete.js"></script>
@@ -62,7 +61,15 @@
         if (done === false) {
           setTimeout(createDefaults,100);
         } else {
-          // runs when loaded
+          try {
+            for (var item of data) {
+              if (item.title && item.desc && item.link && item.place) {
+                load(item.title, item.status, item.link, item.place);
+              }
+            }
+          } catch (err) {
+            console.error(err);
+          }
         }
       }
       

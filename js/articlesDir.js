@@ -72,11 +72,11 @@ function formatData(dat) {
 
       const item = {
         title: response[4], // Column C
-        status: response[7], // Column E
+        status: response[6], // Column E
         link: `article.html?article=${responseNumber}`,
         place: "items",
-        tags: response[2] + " " + response[1], // Column B, & Column C
-        approved: response[8]
+        tags: response[4] + " " + response[6], // Column B, & Column C
+        approved: response[8] // Column F
       };
 
       formattedData.push(item);
