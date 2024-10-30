@@ -2,7 +2,7 @@
 <html>
 
 <head>
-  <title id="pageTitle">request - butterdogco</title>
+  <title id="pageTitle">request - butterdogco updates</title>
   <link rel="apple-touch-icon" sizes="256x256" href="img/butterdog.jpg">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="shortcut icon" href="img/butterdog.ico">
@@ -25,8 +25,8 @@
     </div>
     <h1 class="articleTitle" id="articleTitle">loading</h1>
     <pre class="articleText" id="articleText">if you see this text your internet is a hot pile of garbage</pre>
-    <p class="articleWriter" id="articleStatus">request status loading</p>
-    <p class="articleWriter" id="articleDate">created 09/49/1948</p>
+    <p class="articleStatus" id="articleStatus">request status loading</p>
+    <p class="articleDate" id="articleDate">created 09/49/1948</p>
   </div>
   <hr>
   <div class="loading" id="loadDiv">
@@ -150,7 +150,7 @@
             } else {
               document.getElementById(id).innerHTML = 'created ' + val;
             }
-          } else if (mode === "approved") {
+          } else if (mode === "removed") {
             if (val.toString() === 'no') {
               window.location.href = "index.html";
               alert("this request is no longer available");
@@ -161,12 +161,12 @@
         });
     }
 
-    sheetData("F" + articleNum, "", "approved");
+    sheetData("F" + articleNum, "", "removed");
     sheetData("C" + articleNum, "articleTitle", "title");
     sheetData("D" + articleNum, "articleText", "text");
     // sheetData("F" + articleNum, "articleImg", "image");
-    sheetData("C" + articleNum, "articleStatus", "status");
-    sheetData("G" + articleNum, "", "pageTitle");
+    sheetData("E" + articleNum, "articleStatus", "status");
+    // sheetData("G" + articleNum, "", "pageTitle");
     sheetData("A" + articleNum, "articleDate", "dateMade");
 
     function checkLoad() {
