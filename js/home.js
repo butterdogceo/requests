@@ -7,10 +7,7 @@ function sleep(milliseconds) {
 }
 
 function load(head,text,url,e) {
-  try {
-    createLog("log", image);
-  } catch (err) {}
-
+  createLog("log", head);
   web = `site('${url}')`;
   const div = document.createElement('div');
   const hding = document.createElement('h3');

@@ -62,6 +62,7 @@ function formatData(dat) {
       }
 
       // log the image url for debugging
+      /*
       try {
         createLog("log", image);
         image = image.replace("../", "");
@@ -69,6 +70,7 @@ function formatData(dat) {
         createLog("error", image, "none", "image.replace - articlesDir.js");
         console.error(err);
       }
+      */
 
       const item = {
         title: response[4], // Column C

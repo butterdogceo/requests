@@ -12,15 +12,13 @@ function sleep(milliseconds) {
   } while (currentDate - date < milliseconds);
 }
 
-function load(head,text,image,url,e) {
+function load(head,text,url,e) {
   web = `site("${url}")`;
   const div = document.createElement('div');
-  const img = document.createElement('img');
   const hding = document.createElement('h3');
   const p = document.createElement('p');
   div.setAttribute('class','item');
   div.setAttribute('onclick',web);
-  img.setAttribute('src',image);
   hding.innerHTML = head;
   p.innerHTML = text;
   
@@ -33,7 +31,6 @@ function load(head,text,image,url,e) {
   }
   
   document.getElementById(e).appendChild(div);
-  div.appendChild(img);
   div.appendChild(hding);
   div.appendChild(p);
 }
