@@ -59,9 +59,11 @@
         if (done === false) {
           setTimeout(createDefaults,100);
         } else {
+          createLog("log", "Done loading");
           try {
             for (var item of data) {
-              if (item.title && item.desc && item.link && item.place) {
+              createLog("log", item.title);
+              if (item.title && item.status && item.link && item.place) {
                 load(item.title, item.status, item.link, item.place);
               }
             }

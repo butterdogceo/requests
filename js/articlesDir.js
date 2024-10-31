@@ -73,7 +73,7 @@ function formatData(dat) {
       */
 
       const item = {
-        title: response[4], // Column C
+        title: response[2], // Column C
         status: response[6], // Column E
         link: `article.html?article=${responseNumber}`,
         place: "items",
