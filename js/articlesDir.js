@@ -85,8 +85,6 @@ function formatData(dat) {
         approved: response[8] // Column F
       };
 
-      createLog("log", item.title);
-
       formattedData.push(item);
     }
   }
