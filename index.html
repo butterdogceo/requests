@@ -64,6 +64,7 @@
           createLog("log", "Done loading");
           try {
             for (var item of data) {
+              createLog("log", `Title: ${item.title} | Status: ${item.status} | Link: ${item.link} | Place: ${item.link}`);
               if (item.title && item.status && item.link && item.place) {
                 createLog("log", item.title);
                 load(item.title, item.status, item.link, item.place);

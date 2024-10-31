@@ -24,8 +24,8 @@ function getData() {
       if (dat) {
         const responseData = formatData(dat);
         data.push(...responseData);
-        createLog("log", "Fetched");
         done = true;
+        createLog("log", "Fetched");
       }
     })
     .catch(error => console.error(error));
