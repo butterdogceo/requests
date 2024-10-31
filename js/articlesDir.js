@@ -38,9 +38,10 @@ function formatData(dat) {
   for (let i = 1; i < dat.values.length; i++) {
     const response = dat.values[i];
     const responseNumber = i + 1; // add 1 to ignore header
-    var imageURL = "img/butterdog.jpg";
+    // var imageURL = "img/butterdog.jpg";
 
     if (response) {
+      /*
       var image = response[5] || imageURL;
       if (image.includes("https://")) {
         // is a web url
@@ -57,6 +58,7 @@ function formatData(dat) {
         // is a local url so remove ../
         image = image.replace(/\.\.\//i, "");
       }
+      */
 
       // increase the article count
       if (responseNumber > articleCount) {
