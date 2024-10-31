@@ -29,7 +29,7 @@ function createLog(type, msg, url, linenumber) {
     e.style.background = "rgba(20,20,20,0.1)";
     e.style.color = "black";
   } else {
-    e.innerHTML = `Error: ${msg}<br>URL: ${url}<br>Line: ${linenumber}<br>${new Date.now().getTime()}`;
+    e.innerHTML = `Error: ${msg}<br>URL: ${url}<br>Line: ${linenumber}<br>${new Date().getHours()}`;
     e.style.background = "rgba(230,20,20,0.1)";
     e.style.color = "rgb(230,20,20)";
   }
