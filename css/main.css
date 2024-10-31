@@ -166,7 +166,7 @@ body {
   display: inline-flex;
   margin-left: 50%;
   transform: translateX(-50%);
-  height: 300px;
+  height: 200px;
   max-height: 30vh;
   max-width: 100vw;
   overflow-x: auto;
@@ -210,17 +210,17 @@ body {
 }
 
 .item h3 {
-  position: relative;
-  margin-top: -7vh;
+  /* position: relative;
+  margin-top: -7vh; */
   cursor: pointer;
   font-size: 1.9vh;
   color: var(--text1);
 }
 
 .item p {
-  position: relative;
+  /* position: relative; */
   color: var(--text3);
-  margin-top: -1.8vh;
+  /* margin-top: -1.8vh; */
   cursor: pointer;
   font-size: 1.5vh;
 }

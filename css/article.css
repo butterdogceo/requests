@@ -10,7 +10,6 @@
     font-size: 4vh;
     cursor: default;
     font-weight: 400px;
-    cursor: default;
     color: var(--text1);
   }
   
@@ -140,7 +139,7 @@
   
   .articleText {
     margin-left: 2vh;
-    min-height: 70vh;
+    /* min-height: 70vh; */
     z-index: 1;
     margin-top: -40%;
     color: var(--text1);
@@ -169,7 +168,7 @@
     cursor: default;
   }
   
-  .articleWriter {
+  .articleStatus {
     cursor: default;
     color: rgb(160,160,160);
     text-align: center;

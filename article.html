@@ -23,7 +23,7 @@
     <div class="articleImage">
       <img src="img/butterdog.jpg" id="articleImg">
     </div>
-    <h1 class="articleTitle" id="articleTitle">loading</h1>
+    <h2 class="articleTitle" id="articleTitle">loading</h2>
     <pre class="articleText" id="articleText">if you see this text your internet is a hot pile of garbage</pre>
     <p class="articleStatus" id="articleStatus">request status loading</p>
     <p class="articleDate" id="articleDate">created 09/49/1948</p>
@@ -122,15 +122,15 @@
             }
           } else if (mode === "title") {
             if (val === undefined) {
-              document.getElementById(id).innerHTML = "tis article no exist i tink";
+              document.getElementById(id).innerHTML = "tis request no exist i tink";
             } else {
               document.getElementById(id).innerHTML = val;
             }
           } else if (mode === "text") {
             if (val === undefined) {
-              document.getElementById(id).innerText = "i forgor the text";
+              document.getElementById(id).innerText = "";
             } else {
-              document.getElementById(id).innerHTML = processText(`${val}`);
+              document.getElementById(id).innerHTML = processText(`extra notes: ${val}`);
             }
           } else if (mode === "status") {
             if (val === undefined) {
@@ -181,7 +181,6 @@
     }
     checkLoad();
   </script>
-  <script src="js/main.js"></script>
 </body>
 
 </html>

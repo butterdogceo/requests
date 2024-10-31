@@ -49,7 +49,7 @@ function createSearch() {
   document.body.appendChild(d);
   
   const i = document.createElement('img');
-  i.setAttribute('src','../img/search.png');
+  i.setAttribute('src','img/search.png');
   i.setAttribute('onclick','search("page2");');
   d.appendChild(i);
   
