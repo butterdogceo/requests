@@ -7,6 +7,9 @@ function sleep(milliseconds) {
 }
 
 function load(head,text,url,e) {
+  e = e || "items";
+  url = url || "#";
+
   createLog("log", head);
   web = `site('${url}')`;
   const div = document.createElement('div');
@@ -17,14 +20,6 @@ function load(head,text,url,e) {
   
   hding.innerHTML = head;
   p.innerHTML = text;
-  
-  if (e === null) {
-    e = "items";
-  }
-  
-  if (url === null) {
-    url == "#";
-  }
   
   document.getElementById(e).appendChild(div);
   div.appendChild(hding);
