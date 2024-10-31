@@ -17,12 +17,14 @@ function getData() {
   const sheetId = "AIzaSyBie4PasgrxYkF7LRl8zcCGUsnBnwZ8pWE";
   const url = `https://sheets.googleapis.com/v4/spreadsheets/${spreadsheetId}/values/${sheetName}?key=${sheetId}`;
 
+  createLog("log", "Fetching");
   fetch(url)
     .then(response => response.json())
     .then(dat => {
       if (dat) {
         const responseData = formatData(dat);
         data.push(...responseData);
+        createLog("log", "Fetched");
         done = true;
       }
     })
