@@ -24,12 +24,12 @@ document.body.appendChild(errorDiv);
 function createLog(type, msg, url, linenumber) {
   const e = document.createElement("p");
   if (type != "error") {
-    e.innerHTML = `${msg}<br>${new Date.now().getTime()}`;
+    e.innerHTML = `${msg}<br>${new Date().getHours()}:${new Date().getMinutes()}.${new Date().getSeconds()}`;
     e.title = type;
     e.style.background = "rgba(20,20,20,0.1)";
     e.style.color = "black";
   } else {
-    e.innerHTML = `Error: ${msg}<br>URL: ${url}<br>Line: ${linenumber}<br>${new Date().getHours()}`;
+    e.innerHTML = `Error: ${msg}<br>URL: ${url}<br>Line: ${linenumber}<br>${new Date().getHours()}:${new Date().getMinutes()}.${new Date().getSeconds()}`;
     e.style.background = "rgba(230,20,20,0.1)";
     e.style.color = "rgb(230,20,20)";
   }
