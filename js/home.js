@@ -19,7 +19,7 @@ function load(head,text,url,e) {
   div.setAttribute('onclick', web);
   
   hding.innerHTML = head;
-  p.innerHTML = text;
+  p.innerHTML = `<i style="font-size:14px;">status</i><br><b>${text}</b>`;
   
   document.getElementById(e).appendChild(div);
   div.appendChild(hding);

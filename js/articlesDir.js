@@ -38,51 +38,22 @@ function formatData(dat) {
   for (let i = 1; i < dat.values.length; i++) {
     const response = dat.values[i];
     const responseNumber = i + 1; // add 1 to ignore header
-    // var imageURL = "img/butterdog.jpg";
 
     if (response) {
-      /*
-      var image = response[5] || imageURL;
-      if (image.includes("https://")) {
-        // is a web url
-        if (image.includes("drive.google.com")) {
-          // is google drive
-          const imageId = response[5].toString().replace('https://drive.google.com/open?id=', '');
-          const newImageUrl = `https://drive.google.com/thumbnail?id=${imageId}`;
-          image = newImageUrl;
-        } else {
-          // is a regular web url
-          image = image;
-        }
-      } else {
-        // is a local url so remove ../
-        image = image.replace(/\.\.\//i, "");
-      }
-      */
+      let title = truncateText(response[2], 40, "..."); // Column C
 
       // increase the article count
       if (responseNumber > articleCount) {
         articleCount = responseNumber;
       }
 
-      // log the image url for debugging
-      /*
-      try {
-        createLog("log", image);
-        image = image.replace("../", "");
-      } catch (err) {
-        createLog("error", image, "none", "image.replace - articlesDir.js");
-        console.error(err);
-      }
-      */
-
       const item = {
-        title: response[2], // Column C
+        title: title,
         status: response[4], // Column E
         link: `article.html?article=${responseNumber}`,
         place: "items",
         tags: response[2] + " " + response[4], // Column B, & Column C
-        approved: response[8] // Column F
+        approved: response[5] // Column F
       };
 
       formattedData.push(item);

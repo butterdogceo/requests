@@ -1,21 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>saerch - wikabedia</title>
-    <link rel="shortcut icon" href="img/wikabedia.ico">
-    <link rel="apple-touch-icon" sizes="256x256" href="img/wikabedia icon.png">
+    <title>saerch - feature suggestions</title>
+    <link rel="shortcut icon" href="img/butterdog.ico">
+    <link rel="apple-touch-icon" sizes="256x256" href="img/butterdog.jpg">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <link rel="stylesheet" href="css/search.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="find teh wikabedia artical">
   </head>
   <body>
-    <img src="https://github.com/butterdogco/Wikabedia/blob/main/img/wikabedia.png?raw=true" class="logo" onclick="site('index.html')">
-    <img src="img/back.png" class="logo2" onclick="site('index.html')">
-    <h1 class="logoText">wikabedia</h1>
+    <img src="img/back.png" class="logo" onclick="site('index.html')">
     <br>
     <div class="search">
       <img src="img/search.png" onclick="search('page')">
@@ -31,24 +28,18 @@
       <!--<h2 id="notFound">sory i can no find</h2>-->
       <!--<h3 id="queryText"></h3>-->
     </div>
-    <hr>
-    <h2 class="recomend" onclick="load('no don click me','why did you click that','../img/wikabedia.png','#','recomend');">recomend articles</h2>
-    <div class="items" id="recomend">
-      
-      <!--
-      <div class="item" id="item" onclick="site('https://google.com')">
-        <img src="https://github.com/butterdogco/Wikabedia/blob/main/img/wikabedia.png?raw=true">
-        <h3>Name</h3>
-        <p>Short description</p>
-      </div>
-      -->
-      
-    </div>
-    
+
     <div class="loading" id="loadDiv">
-      <img src="img/wikabedia.png" class="loading-icon">
+      <img src="img/butterdog.jpg" class="loading-icon">
       <div class="loading-spinner"></div>
     </div>
+    
+    <hr>
+    <footer>
+      <a class="not-a-button">copyirigt butterdogco 2024</a>
+      <a href="https://forms.gle/wRjANHLeSoAidRvc6">request</a>
+    </footer>
+    
       
     <script src="js/main.js"></script>
     <script src="js/articlesDir.js"></script>
@@ -70,6 +61,5 @@
       
       setTimeout(checkLoad, 150);
     </script>
-    <script src="js/recomend.js"></script>
   </body>
 </html>

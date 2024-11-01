@@ -42,7 +42,6 @@ function createLog(type, msg, url, linenumber) {
 
 window.onerror = function(msg, url, linenumber) {
   createLog("error", msg, url, linenumber);
-  return true;
 };
 
 document.body.onkeydown = function(event) {
@@ -54,3 +53,14 @@ document.body.onkeydown = function(event) {
     }
   }
 };
+
+function truncateText(str, length, ending) {
+  length = length || 100;
+  ending = ending || "...";
+  
+  if (str.length > length) {
+    return str.substring(0, length - ending.length) + ending;
+  } else {
+    return str;
+  }
+}

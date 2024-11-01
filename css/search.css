@@ -22,27 +22,19 @@
     cursor: default;
   }
   
-  
-  hr {
-    border: 0.1vh solid rgb(230,230,230);
-    margin: 0;
-    width: 100vw;
-    height: 0vh;
-  }
-  
   .logo {
     width: 4vh;
     height: 4vh;
     margin-left: 2vh;
     margin-top: 2vh;
-    filter: brightness(95%);
+    filter: brightness(95%) var(--imagefilter);
     border-radius: 100vh;
     background: var(--background4);
     padding: 2vh;
     cursor: pointer;
-    animation: fadeIn3 4s ease-in-out;
+    /* animation: fadeIn3 4s ease-in-out;
     animation-iteration-count: 9999999;
-    animation-direction: reverse;
+    animation-direction: reverse; */
     z-index: 5;
     position: relative;
   }

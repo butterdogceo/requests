@@ -64,21 +64,21 @@ function createSearch() {
   };
   d.appendChild(t);
   
-  if (window.location.href.includes("article.html?article=")) {
-    const d = document.createElement("div");
-    d.className = "editButton";
-    d.id = "editButton";
-    document.body.appendChild(d);
+  // if (window.location.href.includes("article.html?article=")) {
+  //   const d = document.createElement("div");
+  //   d.className = "editButton";
+  //   d.id = "editButton";
+  //   document.body.appendChild(d);
     
-    const p = document.createElement("p");
-    p.innerText = "edit";
-    d.appendChild(p);
+  //   const p = document.createElement("p");
+  //   p.innerText = "edit";
+  //   d.appendChild(p);
     
-    const i = document.createElement('img');
-    i.setAttribute('src','img/edit.png');
-    i.onclick = function() {alert("tis feature isn't available yet sory for inconveniance")};
-    d.appendChild(i);
-  }
+  //   const i = document.createElement('img');
+  //   i.setAttribute('src','img/edit.png');
+  //   i.onclick = function() {alert("tis feature isn't available yet sory for inconveniance")};
+  //   d.appendChild(i);
+  // }
 }
 
 createSearch();
@@ -99,17 +99,4 @@ function search2(key) {
   }
 }
 
-async function adjustSize() {
-  if (document.getElementById("articleTitle") && document.getElementById("articleText")) {
-    const height = document.getElementById("articleTitle").offsetHeight;
-    const element = document.getElementById("articleText");
-    element.style.marginTop = `calc(-70vh + ${height}px)`;
-  } else if (document.getElementsByClassName("articleTitle")[0] && document.getElementsByClassName("articleText")[0]) {
-    const height = document.getElementsByClassName("articleTitle")[0].offsetHeight;
-    const element = document.getElementsByClassName("articleText")[0];
-    element.style.marginTop = `calc(-70vh + ${height}px)`;
-  }
-}
-
 window.onresize = adjustSize;
-adjustSize();

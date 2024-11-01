@@ -15,27 +15,37 @@
 </head>
 
 <body>
-  <img src="img/butterdog.jpg" class="logo" onclick="site('index.html')">
-  <img src="img/back.png" class="logo2" onclick="site('index.html')">
+  <img src="img/back.png" class="logo" onclick="site('index.html')">
   <h1 class="logoText">butterdogco</h1>
   <br>
-  <div class="article">
-    <div class="articleImage">
-      <img src="img/butterdog.jpg" id="articleImg">
-    </div>
-    <h2 class="articleTitle" id="articleTitle">loading</h2>
-    <pre class="articleText" id="articleText">if you see this text your internet is a hot pile of garbage</pre>
-    <p class="articleStatus" id="articleStatus">request status loading</p>
-    <p class="articleDate" id="articleDate">created 09/49/1948</p>
+  <div class="articleImage">
+    <img src="img/butterdog.jpg" id="articleImg">
   </div>
-  <hr>
+  <h2>feature suggestion</h2>
+  <main>
+    <div class="article">
+      <h3 class="articleTitle"><i>what should be added?</i></h3>
+      <p class="articleTitle" id="articleTitle">loading</p>
+      <h3 class="articleTitle"><i>extra notes</i></h3>
+      <p class="articleText" id="articleText">if you see this text your internet is a hot pile of garbage</p>
+    </div>
+    <div class="articleInfo">
+      <h3>information</h3>
+      <li class="articleStatus" id="articleStatus">status: loading</li>
+      <li class="articleDate" id="articleDate">posted: 09/49/1948</li>
+      <li class="articleNotes" id="articleNotes">dev notes: loading</li>
+    </div>
+  </main>
+
   <div class="loading" id="loadDiv">
     <img src="img/butterdog.jpg" class="loading-icon">
     <div class="loading-spinner"></div>
   </div>
-
+  
   <footer>
+    <hr>
     <a class="not-a-button">copyirigt butterdogco 2024</a>
+    <a class="not-a-button"><b>·</b></a>
     <a href="https://forms.gle/wRjANHLeSoAidRvc6">request</a>
   </footer>
 
@@ -45,6 +55,16 @@
   <script src="js/theme.js"></script>
   <script src="js/autocomplete.js"></script>
   <script>
+    var statusColors = {
+      "Added":"#4cf99d",
+      "WIP":"#f1b88c",
+      "To be added":"#abccf9",
+      "Planned for the future":"#5783c3",
+      "Considering":"#f9f7dc",
+      "Denied":"#e44343",
+      "Not possible":"#fdf552"
+    };
+
     var url = new URL(window.location);
     var articleNum = url.searchParams.get("article");
     var responseCount = 0;
@@ -128,15 +148,18 @@
             }
           } else if (mode === "text") {
             if (val === undefined) {
-              document.getElementById(id).innerText = "";
+              document.getElementById(id).innerText = "empty";
             } else {
-              document.getElementById(id).innerHTML = processText(`extra notes: ${val}`);
+              document.getElementById(id).innerHTML = processText(`${val}`);
             }
           } else if (mode === "status") {
             if (val === undefined) {
-              document.getElementById(id).innerHTML = ''.concat(`status: ${val}`);
+              document.getElementById(id).innerHTML = ''.concat(`status: not yet reviewed / error`);
             } else {
-              document.getElementById(id).innerHTML = ''.concat(`status: not yet reviewed`);
+              document.getElementById(id).innerHTML = ''.concat(`status: ${val}`);
+              if (statusColors[val]) {
+                document.getElementById(id).style.background = `linear-gradient(90deg, ${statusColors[val]} 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0) 70%, ${statusColors[val]} 100%)`;
+              }
             }
           } else if (mode === "pageTitle") {
             if (val === undefined) {
@@ -146,14 +169,19 @@
             }
           } else if (mode === "dateMade") {
             if (val === undefined) {
-              document.getElementById(id).innerHTML = 'created tomorrow';
+              document.getElementById(id).innerHTML = 'created: unvailable';
             } else {
-              document.getElementById(id).innerHTML = 'created ' + val;
+              document.getElementById(id).innerHTML = 'created: ' + val;
             }
           } else if (mode === "removed") {
-            if (val.toString() === 'no') {
+            if (val.toString() === 'TRUE') {
               window.location.href = "index.html";
-              alert("this request is no longer available");
+            }
+          } else if (mode === "notes") {
+            if (val === undefined) {
+              document.getElementById(id).innerHTML = "";
+            } else {
+              document.getElementById(id).innerHTML = ''.concat(`dev notes: ${val}`);
             }
           }
 
@@ -164,10 +192,9 @@
     sheetData("F" + articleNum, "", "removed");
     sheetData("C" + articleNum, "articleTitle", "title");
     sheetData("D" + articleNum, "articleText", "text");
-    // sheetData("F" + articleNum, "articleImg", "image");
     sheetData("E" + articleNum, "articleStatus", "status");
-    // sheetData("G" + articleNum, "", "pageTitle");
     sheetData("A" + articleNum, "articleDate", "dateMade");
+    sheetData("G" + articleNum, "articleNotes", "notes");
 
     function checkLoad() {
       if (document.getElementById('articleTitle').innerHTML != "loading" == false) {

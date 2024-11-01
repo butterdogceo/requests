@@ -90,20 +90,22 @@ async function search(mode) {
     data.forEach(item => {
       var words = searchQuery.split(' ');
       var found = false;
+      words.forEach(word => (word = word.toLowerCase()));
       
       ignoredWords.forEach((element) => {
-        if (!found && item.title && item.desc && item.tags) {
+        item.status = item.status || "no status";
+        if (!found && item.title && item.tags) {
           if (searchQuery === (element) || searchQuery === "how to") {
             found = true;
-            match = words.some(word => (item.title.toLowerCase().includes(word.toLowerCase()) || item.desc.toLowerCase().includes(word.toLowerCase()) || item.tags.toLowerCase().includes(word.toLowerCase())));
+            match = words.some(word => (item.title.toLowerCase().includes(word.toLowerCase()) || item.status.toLowerCase().includes(word.toLowerCase()) || item.tags.toLowerCase().includes(word.toLowerCase())));
           } else {
-            match = words.some(word => !ignoredWords.includes(word.toLowerCase()) && (item.title.toLowerCase().includes(word.toLowerCase()) || item.desc.toLowerCase().includes(word.toLowerCase()) || item.tags.toLowerCase().includes(word.toLowerCase())));
+            match = words.some(word => !ignoredWords.includes(word.toLowerCase()) && (item.title.toLowerCase().includes(word.toLowerCase()) || item.status.toLowerCase().includes(word.toLowerCase()) || item.tags.toLowerCase().includes(word.toLowerCase())));
           }
         }
       });
       
       if (match) {
-        if (item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.desc.toLowerCase().includes(searchQuery.toLowerCase()) || item.tags.toLowerCase().includes(searchQuery.toLowerCase())) {
+        if (item.title.toLowerCase().includes(searchQuery.toLowerCase()) || item.status.toLowerCase().includes(searchQuery.toLowerCase()) || item.tags.toLowerCase().includes(searchQuery.toLowerCase())) {
           exactMatches.push(item);
         } else {
           partialMatches.push(item);
@@ -114,8 +116,7 @@ async function search(mode) {
     // Concatenate the arrays and load the results into the searchItemsElement
     var results = exactMatches.concat(partialMatches);
     results.forEach(item => {
-      var img = item.image;
-      load(item.title, item.desc, img, item.link, "searchItems");
+      load(item.title, item.status, item.link, "searchItems");
     });
 
     if (document.getElementById('searchItems').hasChildNodes() === false && results.length === 0) {
@@ -139,28 +140,4 @@ function search2(key) {
 
 window.addEventListener("load", (event) => {
   search("load");
-});
-
-var focused = false
-
-document.getElementById("searchBox").addEventListener("onfocus", function() {
-  document.getElementById('searchDiv').style.width = "20vh";
-  focused = true;
-});
-
-document.getElementById("searchBox").addEventListener("onfocusout", function() {
-  document.getElementById('searchDiv').style.width = "20vh";
-  focused = false;
-});
-
-document.getElementById("search").addEventListener("mouseover", function() {
-  document.getElementById('searchDiv').style.width = "20vh";
-});
-
-document.getElementById("search").addEventListener("mouseout", function() {
-  if (focused === true) {
-    document.getElementById('searchDiv').style.width = "20vh";
-  } else if (!document.getElementById("searchBox").hasFocus() && document.getElementById("searchBox").value === "") {
-    document.getElementById('searchDiv').style.width = "2.5vh";
-  }
 });
