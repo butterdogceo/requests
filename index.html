@@ -63,7 +63,7 @@
           createLog("log", "Done loading");
           try {
             for (var item of data) {
-              if (item.title && item.link && item.place && item.approved === "FALSE") {
+              if (item.title && item.link && item.place && item.approved != "TRUE") {
                 load(item.title, item.status || "No Status", item.link, item.place);
               }
             }
