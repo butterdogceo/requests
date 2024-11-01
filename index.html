@@ -57,40 +57,44 @@
     <script src="js/backgroundImage.js"></script>
     <script src="js/autocomplete.js"></script>
     <script>
-      function createDefaults() {
+      function whenLoaded() {
         if (done === false) {
           setTimeout(createDefaults,100);
         } else {
           createLog("log", "Done loading");
           try {
             for (var item of data) {
-              createLog("log", `Title: ${item.title} | Status: ${item.status} | Link: ${item.link} | Place: ${item.link}`);
               if (item.title && item.status && item.link && item.place) {
-                createLog("log", item.title);
                 load(item.title, item.status, item.link, item.place);
               }
             }
+
+            document.getElementById('loadDiv').style.opacity = 0;
+            document.getElementById('loadDiv').remove();
+            const parent = document.getElementById("items");
+            const arr = Array.from(parent.childNodes);
+            arr.reverse();
+            parent.append(...arr);
           } catch (err) {
-            createLog("error", err, "function createDefaults", "69");
+            createLog("error", err, "function whenLoaded", "69");
           }
         }
       }
       
-      function checkLoad() {
-        if (done === true) {
-          document.getElementById('loadDiv').style.opacity = 0;
-          document.getElementById('loadDiv').remove();
-          const parent = document.getElementById("items");
-          const arr = Array.from(parent.childNodes);
-          arr.reverse();
-          parent.append(...arr);
-        } else {
-          setTimeout(checkLoad,150);
-        }
-      }
+      // function checkLoad() {
+      //   if (done === true) {
+      //     document.getElementById('loadDiv').style.opacity = 0;
+      //     document.getElementById('loadDiv').remove();
+      //     const parent = document.getElementById("items");
+      //     const arr = Array.from(parent.childNodes);
+      //     arr.reverse();
+      //     parent.append(...arr);
+      //   } else {
+      //     setTimeout(checkLoad,150);
+      //   }
+      // }
       
-      setTimeout(createDefaults, 100);
-      setTimeout(checkLoad, 150);
+      setTimeout(whenLoaded, 100);
     </script>
   </body>
 </html>

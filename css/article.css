@@ -108,7 +108,7 @@
     mask-image: linear-gradient(to top, rgba(0,0,0,0) 10%,rgba(0,0,0,0.35) 100%);
   }
   
-  /*.articleImage:after {*/
+  /* .articleImage:after {*/
   /*  content: "";*/
   /*  position: absolute;*/
   /*  top: -14vh;*/
@@ -117,7 +117,7 @@
   /*  height: 100vh;*/
   /*  background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 20%, rgba(255,255,255,0.6206524846266632) 100%);*/
   /*  pointer-events: none;*/
-  /*}*/
+  /*} */
   
   .articleTitle {
     text-align: center;
