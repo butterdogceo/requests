@@ -1,0 +1,108 @@
+@import url(main.css);
+
+h1 {
+  text-align: center;
+  margin-top: 3vh;
+  font-size: 4vh;
+  margin-bottom: 2vh;
+  font-weight: 400px;
+  text-shadow: 0 0 2vh rgba(0, 0, 0, 0.2);
+  color: var(--text1);
+}
+
+h2 {
+  text-align: center;
+  margin-top: 5vh;
+  font-size: 3vh;
+  font-weight: 400px;
+  cursor: default;
+  z-index: 2;
+  position: relative;
+  text-shadow: 0px 0px 2vh rgba(0, 0, 0, 0.2);
+  color: var(--text1);
+}
+
+
+hr {
+  border: 0.1vh solid var(--background2);
+  margin: 0;
+  width: 100vw;
+  height: 0vh;
+  z-index: 1;
+  position: relative;
+  box-shadow: 0px 0px 2vh rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  width: 10vh;
+  height: 10vh;
+  transform: translateX(-50%);
+  margin-left: 50%;
+  margin-top: 2vh;
+  filter: brightness(95%);
+  border-radius: 100vh;
+  /* background: var(--background4); */
+  /* padding: 2vh; */
+  box-shadow: 0px 0px 2vh var(--shadow1);
+}
+
+.logo2 {
+  display: none;
+}
+
+.logoDesc,
+.logoText,
+.recomend {
+  cursor: default;
+  z-index: 1;
+  position: relative;
+}
+
+.logoDesc {
+  color: rgb(190, 190, 190);
+  text-align: center;
+  font-size: 1.9vh;
+}
+
+.recomend::selection {
+  background: none;
+}
+
+ul {
+  list-style-type: none;
+  margin-top: -3px;
+}
+
+li {
+  float: right;
+}
+
+.headImageGradient {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+}
+
+.headImageGradient::after {
+  content: "";
+  position: absolute;
+  top: -17vh;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(0deg, var(--background1) 0%, var(--background1) 20%, var(--hometopgradient) 100%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.headImage {
+  height: 100vh;
+  width: 100vw;
+  position: absolute;
+  background-repeat: no-repeat;
+  background-size: cover;
+  top: -17vh;
+  transition: 1s ease;
+  z-index: 0;
+  background-image: url("../img/DarkBG.png");
+}
